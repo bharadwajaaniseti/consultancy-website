@@ -1,0 +1,40 @@
+import { motion } from 'framer-motion';
+
+export default function ContactPage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      <section className="pt-20 pb-12 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.h1
+            className="text-4xl md:text-6xl font-bold text-white mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Contact <span className="text-blue-400">Us</span>
+          </motion.h1>
+          <motion.p
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Ready to start your international education journey? Get in touch with our 
+            expert counselors for personalized guidance and support.
+          </motion.p>
+        </div>
+      </section>
+      
+      <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-white mb-8">
+            Contact Information Coming Soon
+          </h2>
+          <p className="text-gray-300">
+            We are currently updating our contact page.
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+}
