@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { 
   GraduationCap, 
   FileText, 
@@ -18,6 +19,7 @@ import {
 export default function ServicesPage() {
   const mainServices = [
     {
+      id: 'university-applications',
       icon: GraduationCap,
       title: 'University Applications',
       description: 'Complete application assistance for undergraduate, postgraduate, and doctoral programs worldwide.',
@@ -29,9 +31,10 @@ export default function ServicesPage() {
         'Portfolio development for creative programs',
         'Interview preparation and mock sessions'
       ],
-      pricing: 'Starting from $299'
+      pricing: 'Free for students'
     },
     {
+      id: 'visa-assistance',
       icon: FileText,
       title: 'Visa Assistance',
       description: 'Expert guidance through the visa application process with a 97% success rate.',
@@ -43,9 +46,10 @@ export default function ServicesPage() {
         'Embassy appointment scheduling',
         'Post-visa arrival support'
       ],
-      pricing: 'Starting from $199'
+      pricing: 'Free for students'
     },
     {
+      id: 'test-preparation',
       icon: BookOpen,
       title: 'Test Preparation',
       description: 'Comprehensive preparation for standardized tests required for international admissions.',
@@ -57,9 +61,10 @@ export default function ServicesPage() {
         'Mock tests and performance analysis',
         'One-on-one tutoring sessions'
       ],
-      pricing: 'Starting from $149'
+      pricing: 'Free for students'
     },
     {
+      id: 'document-support',
       icon: PenTool,
       title: 'Document Support',
       description: 'Professional assistance with all academic and personal documents.',
@@ -71,7 +76,7 @@ export default function ServicesPage() {
         'Cover letter preparation',
         'Academic writing support'
       ],
-      pricing: 'Starting from $99'
+      pricing: 'Free for students'
     }
   ];
 
@@ -162,6 +167,15 @@ export default function ServicesPage() {
             Comprehensive educational consultancy services designed to guide you through 
             every step of your international education journey.
           </motion.p>
+
+          <motion.p
+            className="text-lg text-blue-100 mt-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Every consultation, application, and visa service we offer is completely free for students.
+          </motion.p>
         </div>
       </section>
 
@@ -179,7 +193,8 @@ export default function ServicesPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {mainServices.map((service, index) => (
               <motion.div
-                key={service.title}
+                key={service.id}
+                id={service.id}
                 className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -200,10 +215,10 @@ export default function ServicesPage() {
                 </ul>
                 
                 <div className="flex justify-between items-center pt-4 border-t border-white/20">
-                  <span className="text-blue-400 font-semibold">{service.pricing}</span>
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                    Get Started
-                  </button>
+                  <span className="text-blue-300 font-semibold">No service fees - {service.pricing}</span>
+                  <Link href="/contact#contact-form" data-scroll-target="contact-form" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center">
+                    Start Free Support
+                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -237,7 +252,7 @@ export default function ServicesPage() {
                 <div className="space-y-1">
                   {service.highlights.map((highlight, idx) => (
                     <div key={idx} className="text-blue-400 text-xs font-medium">
-                      • {highlight}
+                      - {highlight}
                     </div>
                   ))}
                 </div>
@@ -304,7 +319,7 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Book your free consultation today and take the first step towards your international education goals.
+            Our advisors reply within 24 hours; share your goals and we will tailor a free support plan.
           </motion.p>
           <motion.div
             className="flex justify-center"
@@ -312,12 +327,14 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <button className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors">
-              Book Free Consultation
-            </button>
+            <Link href="/contact#contact-form" data-scroll-target="contact-form" className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors">Start Free Support</Link>
           </motion.div>
         </div>
       </section>
     </div>
   );
 }
+
+
+
+

@@ -1,14 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { 
-  Globe, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Facebook, 
-  Twitter, 
-  Instagram, 
+import Image from 'next/image';
+import {
+  Mail,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
   Linkedin,
   GraduationCap,
   FileText,
@@ -24,6 +23,7 @@ const footerSections = [
       { name: 'University Applications', href: '/services#university-applications', icon: GraduationCap },
       { name: 'Visa Assistance', href: '/services#visa-assistance', icon: FileText },
       { name: 'Test Preparation', href: '/services#test-preparation', icon: BookOpen },
+      { name: 'Document Support', href: '/services#document-support', icon: FileText },
     ],
   },
   {
@@ -41,17 +41,17 @@ const footerSections = [
     title: 'Company',
     links: [
       { name: 'About Us', href: '/about', icon: Users },
-      { name: 'University Partners', href: '#partners' },
-      { name: 'Success Stories', href: '#success-stories' },
+      { name: 'University Partners', href: '/about#partners' },
+      { name: 'Success Stories', href: '/about#success-stories' },
       { name: 'Contact Us', href: '/contact' },
     ],
   },
   {
     title: 'Legal',
     links: [
-      { name: 'Privacy Policy', href: '#privacy' },
-      { name: 'Terms of Service', href: '#terms' },
-      { name: 'Disclaimer', href: '#disclaimer' },
+      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Terms of Service', href: '/terms' },
+      { name: 'Disclaimer', href: '/disclaimer' },
     ],
   },
 ];
@@ -82,8 +82,8 @@ export default function Footer() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mr-3">
-                <Globe className="w-6 h-6 text-white" />
+              <div className="relative w-14 h-14 mr-4">
+                <Image src="/globalrise-logo.svg" alt="GlobalRise logo" fill sizes="56px" className="object-contain" priority />
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-white">GlobalRise</h3>
@@ -108,15 +108,6 @@ export default function Footer() {
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <Phone className="w-4 h-4 mr-3 text-cyan-400" />
-                <span>+1 (555) 123-4567</span>
-              </motion.div>
-
-              <motion.div
-                className="flex items-center text-sm"
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
                 <Mail className="w-4 h-4 mr-3 text-cyan-400" />
                 <span>info@globalrise.in</span>
               </motion.div>
@@ -127,7 +118,7 @@ export default function Footer() {
                 transition={{ duration: 0.2 }}
               >
                 <MapPin className="w-4 h-4 mr-3 text-cyan-400" />
-                <span>Hyderabad, Telangana • India || Edinburgh • UK</span>
+                <span>Hyderabad, Telangana - India | Leicester - UK | Edinburgh - UK</span>
               </motion.div>
             </div>
           </motion.div>
@@ -187,7 +178,7 @@ export default function Footer() {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              © 2025 GlobalRise. All rights reserved.
+              (c) 2025 GlobalRise. All rights reserved.
             </motion.p>
 
             {/* Social Links */}

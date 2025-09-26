@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
   GraduationCap, 
@@ -65,6 +66,7 @@ export default function DestinationsPage() {
   }, [modalDestination]);
 
   const openModal = (destination: typeof destinations[0]) => setModalDestination(destination);
+  const guideDownloadUrl = '/downloads/globalrise-study-guide.pdf';
   const closeModal = () => setModalDestination(null);
 
   // Function to scroll to ContactForm section
@@ -79,7 +81,7 @@ export default function DestinationsPage() {
   };
 
   // Handle consultation button click
-  const handleConsultationClick = () => {
+  const handleSupportClick = () => {
     closeModal();
     // Delay scroll to allow modal to close first
     setTimeout(() => {
@@ -92,7 +94,7 @@ export default function DestinationsPage() {
       id: 'uk',
       country: 'United Kingdom',
       name: 'United Kingdom',
-      flag: '🇬🇧',
+      flag: 'UK',
       flagImage: 'https://flagcdn.com/w320/gb.png',
       countryImage: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop&crop=center',
       capital: 'London',
@@ -155,7 +157,7 @@ export default function DestinationsPage() {
       id: 'usa',
       country: 'United States',
       name: 'United States',
-      flag: '🇺🇸',
+      flag: 'USA',
       flagImage: 'https://flagcdn.com/w320/us.png',
       countryImage: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&crop=center',
       capital: 'Washington D.C.',
@@ -205,7 +207,7 @@ export default function DestinationsPage() {
       id: 'australia',
       country: 'Australia',
       name: 'Australia',
-      flag: '🇦🇺',
+      flag: 'Australia',
       flagImage: 'https://flagcdn.com/w320/au.png',
       countryImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&crop=center',
       capital: 'Canberra',
@@ -255,7 +257,7 @@ export default function DestinationsPage() {
       id: 'germany',
       country: 'Germany',
       name: 'Germany',
-      flag: '🇩🇪',
+      flag: 'Germany',
       flagImage: 'https://flagcdn.com/w320/de.png',
       countryImage: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=600&fit=crop&crop=center',
       capital: 'Berlin',
@@ -302,10 +304,10 @@ export default function DestinationsPage() {
       },
     },
     {
-      id: 'newzealand',
+      id: 'new-zealand',
       country: 'New Zealand',
       name: 'New Zealand',
-      flag: '🇳🇿',
+      flag: 'New Zealand',
       flagImage: 'https://flagcdn.com/w320/nz.png',
       countryImage: 'https://images.unsplash.com/photo-1469521669194-babb45599def?w=800&h=600&fit=crop&crop=center',
       capital: 'Wellington',
@@ -355,7 +357,7 @@ export default function DestinationsPage() {
       id: 'ireland',
       country: 'Ireland',
       name: 'Ireland',
-      flag: '🇮🇪',
+      flag: 'Ireland',
       flagImage: 'https://flagcdn.com/w320/ie.png',
       countryImage: 'https://images.unsplash.com/photo-1590736969955-71cc94901144?w=800&h=600&fit=crop&crop=center',
       capital: 'Dublin',
@@ -419,7 +421,7 @@ export default function DestinationsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       {/* Hero Section */}
-      <section className="pt-20 pb-12 px-4">
+      <section id="destinations" className="pt-20 pb-12 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h1
             className="text-4xl md:text-6xl font-bold text-white mb-6"
@@ -438,6 +440,18 @@ export default function DestinationsPage() {
             Explore world-class education opportunities across our partner countries. 
             Find the perfect destination for your academic journey.
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <Link
+              href="/contact#contact-form"
+              className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors inline-block"
+            >
+              Start Free Support
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -469,6 +483,7 @@ export default function DestinationsPage() {
             {destinations.map((destination, index) => (
               <motion.div
                 key={destination.country}
+                id={destination.id}
                 className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -503,7 +518,7 @@ export default function DestinationsPage() {
                         </div>
                         <div className="flex items-center gap-3">
                           <DollarSign className="w-5 h-5 text-green-400" />
-                          <span className="text-gray-300">Annual Cost: {destination.avgCost}</span>
+                          <span className="text-gray-300">Average Tuition Range: {destination.avgCost}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <Clock className="w-5 h-5 text-yellow-400" />
@@ -600,14 +615,18 @@ export default function DestinationsPage() {
             Our expert counselors will help you choose the perfect destination based on your 
             academic goals, budget, and career aspirations.
           </motion.p>
-          <motion.button
-            className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Get Personalized Guidance
-          </motion.button>
+            <Link
+              href="/contact#contact-form"
+              className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors inline-block"
+            >
+              Start Free Support
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -794,19 +813,21 @@ export default function DestinationsPage() {
                       className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      onClick={handleConsultationClick}
+                      onClick={handleSupportClick}
                     >
                       <img src={modalDestination.flagImage} alt={`${modalDestination.name} flag`} className="w-6 h-4 object-cover rounded-sm mr-3" />
-                      Get Free Consultation
+                      Start Free Support
                     </motion.button>
-                    <motion.button
+                    <motion.a
                       className="flex-1 border-2 border-blue-600 text-blue-600 dark:text-blue-400 py-4 px-8 rounded-xl font-semibold text-lg hover:bg-blue-600 hover:text-white transition-all duration-300 flex items-center justify-center"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
+                      href={guideDownloadUrl}
+                      download
                     >
                       <Briefcase className="w-5 h-5 mr-3" />
                       Download Guide
-                    </motion.button>
+                    </motion.a>
                   </motion.div>
                 </div>
               </div>
@@ -817,3 +838,10 @@ export default function DestinationsPage() {
     </div>
   );
 }
+
+
+
+
+
+
+

@@ -1,16 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, Send, MessageSquare, Calendar, Globe } from 'lucide-react';
+import { Mail, MapPin, Clock, Send, MessageSquare, Calendar, Globe } from 'lucide-react';
 
 export default function ContactPage() {
   const contactInfo = [
-    {
-      icon: Phone,
-      title: 'Phone',
-      info: '+1 (555) 123-4567',
-      description: 'Mon-Fri 9AM-6PM EST'
-    },
     {
       icon: Mail,
       title: 'Email',
@@ -20,14 +14,20 @@ export default function ContactPage() {
     {
       icon: MapPin,
       title: 'Offices',
-      info: 'Hyderabad, India • Edinburgh, UK',
-      description: 'Multiple locations worldwide'
+      info: 'Hyderabad, India - Edinburgh, UK',
+      description: 'Global reach with local teams'
     },
     {
       icon: Clock,
-      title: 'Hours',
+      title: 'Working Hours',
       info: 'Mon-Fri 9AM-6PM',
       description: 'Weekend appointments available'
+    },
+    {
+      icon: Globe,
+      title: 'Founded',
+      info: 'Established in 2021',
+      description: 'Helping students across 45 countries'
     }
   ];
 
@@ -36,7 +36,6 @@ export default function ContactPage() {
       city: 'Hyderabad',
       country: 'India',
       address: '123 HITEC City, Cyberabad, Hyderabad, Telangana 500081',
-      phone: '+91 40 1234 5678',
       email: 'hyderabad@globalrise.in',
       hours: 'Mon-Sat 9AM-7PM IST'
     },
@@ -44,7 +43,6 @@ export default function ContactPage() {
       city: 'Edinburgh',
       country: 'United Kingdom',
       address: '45 George Street, Edinburgh EH2 2HT, Scotland',
-      phone: '+44 131 123 4567',
       email: 'edinburgh@globalrise.in',
       hours: 'Mon-Fri 9AM-5PM GMT'
     }
@@ -122,7 +120,7 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-16 px-4">
+      <section id="contact-form" className="py-16 px-4 scroll-mt-24">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -161,17 +159,7 @@ export default function ContactPage() {
                     placeholder="john.doe@email.com"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-white text-sm font-medium mb-2">Phone Number</label>
-                  <input
-                    type="tel"
-                    className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:border-blue-400 focus:outline-none"
-                    placeholder="+1 (555) 123-4567"
-                  />
-                </div>
-
-                <div>
+<div>
                   <label className="block text-white text-sm font-medium mb-2">Interested Destination</label>
                   <select className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white focus:border-blue-400 focus:outline-none">
                     <option value="">Select a destination</option>
@@ -179,7 +167,7 @@ export default function ContactPage() {
                     <option value="us">United States</option>
                     <option value="australia">Australia</option>
                     <option value="germany">Germany</option>
-                    <option value="newzealand">New Zealand</option>
+                    <option value="new-zealand">New Zealand</option>
                     <option value="ireland">Ireland</option>
                   </select>
                 </div>
@@ -243,9 +231,9 @@ export default function ContactPage() {
                             </li>
                           ))}
                         </ul>
-                        <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors">
-                          Book Now
-                        </button>
+                        <a href="#contact-form" className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors">
+                          Start Free Support
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -285,10 +273,6 @@ export default function ContactPage() {
                     <span className="text-sm">{office.address}</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-green-400" />
-                    <span className="text-sm">{office.phone}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
                     <Mail className="w-5 h-5 text-purple-400" />
                     <span className="text-sm">{office.email}</span>
                   </div>
@@ -304,7 +288,7 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 px-4">
+      <section id="faqs" className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <motion.h2
             className="text-3xl font-bold text-white text-center mb-12"
@@ -350,3 +334,8 @@ export default function ContactPage() {
     </div>
   );
 }
+
+
+
+
+

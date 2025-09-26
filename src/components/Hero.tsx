@@ -967,12 +967,25 @@ function AcademicParticleField() {
 }
 
 export default function Hero() {
-  const scrollToContactForm = () => {
-    const contactSection = document.getElementById('contact-form-section');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const scrollToSection = (id: string) => {
+    if (typeof window === 'undefined') return;
+
+    const prefersReducedMotion = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const target = document.getElementById(id);
+
+    if (target) {
+      const headerOffset = 96;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: targetTop, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    } else {
+      window.location.href = id === 'destinations' ? '/destinations' : '/contact#contact-form';
     }
   };
+
+  const scrollToContactForm = () => scrollToSection('contact-form-section');
+  const scrollToDestinations = () => scrollToSection('destinations');
+
+
 
   const universityLogos = [
     { name: 'Harvard', logo: 'https://upload.wikimedia.org/wikipedia/commons/c/cc/Harvard_University_coat_of_arms.svg' },
@@ -1090,6 +1103,7 @@ export default function Hero() {
                 className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 shadow-2xl hover:shadow-white/25 flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={scrollToDestinations}
               >
                 <MapPin className="w-5 h-5" />
                 Explore Destinations
@@ -1186,3 +1200,7 @@ export default function Hero() {
     </section>
   );
 }
+
+
+
+

@@ -24,7 +24,7 @@ const destinations = [
     id: 'uk',
     name: 'United Kingdom',
     country: 'UK',
-    flag: '🇬🇧',
+    flag: 'UK',
     flagImage: 'https://flagcdn.com/w320/gb.png',
     countryImage: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop&crop=center',
     description: 'World-class universities with rich history and diverse culture.',
@@ -66,7 +66,7 @@ const destinations = [
     id: 'usa',
     name: 'United States',
     country: 'USA',
-    flag: '🇺🇸',
+    flag: 'USA',
     flagImage: 'https://flagcdn.com/w320/us.png',
     countryImage: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&crop=center',
     description: 'Leading research institutions and innovation hubs across America.',
@@ -95,7 +95,7 @@ const destinations = [
     id: 'australia',
     name: 'Australia',
     country: 'Australia',
-    flag: '🇦🇺',
+    flag: 'Australia',
     flagImage: 'https://flagcdn.com/w320/au.png',
     countryImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&crop=center',
     description: 'High-quality education with excellent post-study work rights.',
@@ -129,7 +129,7 @@ const destinations = [
     id: 'germany',
     name: 'Germany',
     country: 'Germany',
-    flag: '🇩🇪',
+    flag: 'Germany',
     flagImage: 'https://flagcdn.com/w320/de.png',
     countryImage: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=600&fit=crop&crop=center',
     description: 'Tuition-free or low-cost education with strong engineering focus.',
@@ -164,7 +164,7 @@ const destinations = [
     id: 'new-zealand',
     name: 'New Zealand',
     country: 'New Zealand',
-    flag: '🇳🇿',
+    flag: 'New Zealand',
     flagImage: 'https://flagcdn.com/w320/nz.png',
     countryImage: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&crop=center',
     description: 'Safe environment with quality education and stunning landscapes.',
@@ -198,7 +198,7 @@ const destinations = [
     id: 'ireland',
     name: 'Ireland',
     country: 'Ireland',
-    flag: '🇮🇪',
+    flag: 'Ireland',
     flagImage: 'https://flagcdn.com/w320/ie.png',
     countryImage: 'https://images.unsplash.com/photo-1590736969955-71cc94901144?w=800&h=600&fit=crop&crop=center',
     description: 'English-speaking country with growing tech and business sectors.',
@@ -230,6 +230,8 @@ const destinations = [
     },
   },
 ];
+
+const guideDownloadUrl = '/downloads/globalrise-study-guide.pdf';
 
 /* ===== COMPONENT ===== */
 export default function Destinations() {
@@ -283,8 +285,8 @@ export default function Destinations() {
     }
   };
 
-  // Handle consultation button click
-  const handleConsultationClick = () => {
+  // Handle support button click
+  const handleSupportClick = () => {
     closeModal();
     // Delay scroll to allow modal to close first
     setTimeout(() => {
@@ -293,7 +295,7 @@ export default function Destinations() {
   };
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="destinations" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div className="text-center mb-16" {...framerVariants.fadeIn}>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Study Destinations</h2>
@@ -621,19 +623,21 @@ export default function Destinations() {
                         className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        onClick={handleConsultationClick}
+                        onClick={handleSupportClick}
                       >
                         <img src={modalDestination.flagImage} alt={`${modalDestination.name} flag`} className="w-6 h-4 object-cover rounded-sm mr-3" />
-                        Get Free Consultation
+                        Start Free Support
                       </motion.button>
-                      <motion.button
+                      <motion.a
                         className="flex-1 border-2 border-blue-600 text-blue-600 dark:text-blue-400 py-4 px-8 rounded-xl font-semibold text-lg hover:bg-blue-600 hover:text-white transition-all duration-300 flex items-center justify-center"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
+                        href={guideDownloadUrl}
+                        download
                       >
                         <Briefcase className="w-5 h-5 mr-3" />
                         Download Guide
-                      </motion.button>
+                      </motion.a>
                     </motion.div>
                   </div>
                 </div>
@@ -645,3 +649,6 @@ export default function Destinations() {
     </section>
   );
 }
+
+
+

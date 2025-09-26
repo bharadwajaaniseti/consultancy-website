@@ -3,45 +3,35 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
 import { framerVariants } from '@/lib/animations';
 
 interface FormData {
   name: string;
   email: string;
-  company: string;
-  message: string;
   service: string;
+  message: string;
 }
+
+const services = [
+  'University Selection & Application',
+  'Visa & Immigration Support',
+  'Accommodation & Settlement',
+  'Scholarships & Financial Aid',
+  'Test Preparation',
+  'Career Counseling',
+  'Other'
+];
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
-    company: '',
-    message: '',
     service: '',
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
-
-  const services = [
-    'University Selection & Application',
-    'Visa & Immigration Support',
-    'Accommodation & Settlement',
-    'Scholarships & Financial Aid',
-    'Test Preparation',
-    'Career Counseling',
-    'Other',
-  ];
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
@@ -65,21 +55,18 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
 
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     setIsSubmitting(false);
     setIsSubmitted(true);
 
-    // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
         name: '',
         email: '',
-        company: '',
-        message: '',
         service: '',
+        message: '',
       });
     }, 3000);
   };
@@ -93,7 +80,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact-form-section" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="contact-form-section" className="py-20 bg-gray-50 dark:bg-gray-900 scroll-mt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-12"
@@ -103,7 +90,7 @@ export default function ContactForm() {
             Start Your Journey
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            Ready to study abroad? Get expert guidance for your international education journey.
+            Ready to study abroad? Share a few details and we&apos;ll respond by email with your next steps.
           </p>
         </motion.div>
 
@@ -130,7 +117,6 @@ export default function ContactForm() {
                     errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                   } bg-white dark:bg-gray-700 text-gray-900 dark:text-white`}
                   placeholder="Your full name"
-                  suppressHydrationWarning
                 />
                 {errors.name && (
                   <motion.p
@@ -162,7 +148,6 @@ export default function ContactForm() {
                     errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                   } bg-white dark:bg-gray-700 text-gray-900 dark:text-white`}
                   placeholder="your@email.com"
-                  suppressHydrationWarning
                 />
                 {errors.email && (
                   <motion.p
@@ -178,48 +163,26 @@ export default function ContactForm() {
               </motion.div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <motion.div
-                whileFocus={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
+            <motion.div
+              whileFocus={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
+              <label htmlFor="service" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Service of Interest
+              </label>
+              <select
+                id="service"
+                name="service"
+                value={formData.service}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               >
-                <label htmlFor="company" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  placeholder="Your phone number"
-                  suppressHydrationWarning
-                />
-              </motion.div>
-
-              <motion.div
-                whileFocus={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <label htmlFor="service" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Service of Interest
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  value={formData.service}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  suppressHydrationWarning
-                >
-                  <option value="">Select a service</option>
-                  {services.map(service => (
-                    <option key={service} value={service}>{service}</option>
-                  ))}
-                </select>
-              </motion.div>
-            </div>
+                <option value="">Select a service</option>
+                {services.map(service => (
+                  <option key={service} value={service}>{service}</option>
+                ))}
+              </select>
+            </motion.div>
 
             <motion.div
               whileFocus={{ scale: 1.02 }}
@@ -238,7 +201,6 @@ export default function ContactForm() {
                   errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                 } bg-white dark:bg-gray-700 text-gray-900 dark:text-white`}
                 placeholder="Tell us about your academic background, preferred destinations, and study goals..."
-                suppressHydrationWarning
               />
               {errors.message && (
                 <motion.p
@@ -284,36 +246,14 @@ export default function ContactForm() {
           </form>
         </motion.div>
 
-        <motion.div
-          className="mt-8 text-center"
+        <motion.p
+          className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400"
           {...framerVariants.fadeIn}
         >
-          <Dialog>
-            <DialogTrigger asChild>
-              <motion.button
-                className="text-blue-600 hover:text-blue-700 font-medium"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Schedule a Free Consultation Call
-              </motion.button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Book Free Consultation</DialogTitle>
-                <DialogDescription>
-                  Schedule a free 30-minute consultation with our education experts to discuss your study abroad plans.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="mt-4">
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Our team will contact you within 24 hours to arrange a convenient time.
-                </p>
-              </div>
-            </DialogContent>
-          </Dialog>
-        </motion.div>
+          Prefer to reach out directly? Email <a className="text-blue-600 hover:text-blue-700" href="mailto:info@globalrise.in">info@globalrise.in</a> and we&apos;ll respond within one business day.
+        </motion.p>
       </div>
     </section>
   );
 }
+

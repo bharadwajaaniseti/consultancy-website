@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Outer brand ring -->
+  <circle cx="128" cy="128" r="114" fill="none" stroke="#1d4ed8" stroke-width="16" stroke-linecap="round" />
+  <!-- Neutral backdrop to keep icon crisp on dark UI -->
+  <circle cx="128" cy="128" r="98" fill="#ffffff" />
+
+  <!-- Central graduate -->
+  <g fill="#111827">
+    <!-- Mortarboard -->
+    <path d="M128 72 72 100 128 128 184 100Z" />
+    <path d="M112 124h32v20a4 4 0 0 1-4 4h-24a4 4 0 0 1-4-4Z" />
+    <!-- Tassel -->
+    <path d="M168 104v30a4 4 0 0 1-8 0v-32Z" />
+    <circle cx="164" cy="138" r="5" />
+    <!-- Shoulders -->
+    <path d="M92 206c8-32 28-56 40-56h32c12 0 32 24 40 56Z" />
+    <circle cx="128" cy="154" r="30" />
+  </g>
+  <circle cx="128" cy="154" r="18" fill="#ffffff" />
+
+  <!-- Left graduate -->
+  <g fill="#111827">
+    <path d="M56 112 92 96 128 112 92 128Z" />
+    <path d="M80 126h20v12a4 4 0 0 1-4 4H84a4 4 0 0 1-4-4Z" />
+    <path d="M60 190c4-22 16-36 24-36h16c8 0 20 14 24 36Z" />
+    <circle cx="92" cy="148" r="22" />
+  </g>
+  <circle cx="92" cy="148" r="13" fill="#ffffff" />
+
+  <!-- Right graduate -->
+  <g fill="#111827">
+    <path d="M128 112 164 96 200 112 164 128Z" />
+    <path d="M172 126h20v12a4 4 0 0 1-4 4h-12a4 4 0 0 1-4-4Z" />
+    <path d="M140 190c4-22 16-36 24-36h16c8 0 20 14 24 36Z" />
+    <circle cx="164" cy="148" r="22" />
+  </g>
+  <circle cx="164" cy="148" r="13" fill="#ffffff" />
+</svg>

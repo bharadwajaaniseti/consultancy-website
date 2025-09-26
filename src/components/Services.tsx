@@ -66,7 +66,7 @@ const services = [
         { label: 'Applications Processed', value: '2,000+', icon: FileText },
         { label: 'Countries Covered', value: '15+', icon: Users }
       ],
-      pricing: 'Starting from $299',
+  pricing: 'FREE for students',
       duration: '4-8 weeks',
       highlights: [
         'Personalized university matching',
@@ -104,7 +104,7 @@ const services = [
         { label: 'Applications Filed', value: '1,500+', icon: FileText },
         { label: 'Embassy Partnerships', value: '12+', icon: Users }
       ],
-      pricing: 'Starting from $199',
+  pricing: 'FREE for students',
       duration: '2-4 weeks',
       highlights: [
         'High success rate guaranteed',
@@ -142,7 +142,7 @@ const services = [
         { label: 'Cities Covered', value: '50+', icon: TrendingUp },
         { label: 'Student Satisfaction', value: '98%', icon: Star }
       ],
-      pricing: 'Starting from $149',
+  pricing: 'FREE for students',
       duration: '1-2 weeks',
       highlights: [
         'Pre-verified safe accommodations',
@@ -179,7 +179,7 @@ const services = [
         { label: 'Scholarship Programs', value: '300+', icon: Lightbulb },
         { label: 'Students Helped', value: '1,200+', icon: Users }
       ],
-      pricing: 'Starting from $99',
+  pricing: 'FREE for students',
       duration: '2-6 weeks',
       highlights: [
         'Access to exclusive scholarships',
@@ -206,6 +206,26 @@ export default function Services() {
     setIsModalOpen(false);
     setSelectedService(null);
   };
+  const scrollToContactForm = () => {
+    if (typeof window === 'undefined') return;
+
+    const prefersReducedMotion = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const contactSection = document.getElementById('contact-form-section');
+
+    if (contactSection) {
+      const headerOffset = 96;
+      const targetTop = contactSection.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: targetTop, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    } else {
+      window.location.href = '/contact#contact-form';
+    }
+  };
+
+  const handleGetStarted = () => {
+    closeModal();
+    setTimeout(scrollToContactForm, 300);
+  };
+
 
   // Handle modal close with useEffect and Lenis integration
   useEffect(() => {
@@ -255,7 +275,7 @@ export default function Services() {
   }, [isModalOpen]);
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="services" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
@@ -498,7 +518,7 @@ export default function Services() {
                           <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Pricing</span>
                         </div>
                         <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                          {selectedService.modalContent.pricing}
+                          All our services are <span className="text-green-600 font-bold">FREE for students</span>.
                         </div>
                       </div>
                       <div className="bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-6 border border-purple-200 dark:border-purple-700">
@@ -520,6 +540,7 @@ export default function Services() {
                         className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
+                        onClick={handleGetStarted}
                       >
                         Get Started
                       </motion.button>
@@ -534,3 +555,4 @@ export default function Services() {
     </section>
   );
 }
+

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Globe, 
   Menu, 
@@ -10,7 +11,8 @@ import {
   MapPin, 
   Users, 
   MessageSquare,
-  BookOpen
+  BookOpen,
+  Briefcase
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -19,6 +21,7 @@ const navigationItems = [
   { name: 'About', href: '/about', icon: Users },
   { name: 'Services', href: '/services', icon: GraduationCap },
   { name: 'Destinations', href: '/destinations', icon: MapPin },
+  { name: 'Careers', href: '/careers', icon: Briefcase },
   { name: 'Contact', href: '/contact', icon: MessageSquare },
 ];
 
@@ -41,8 +44,8 @@ export default function Header() {
               whileTap={{ scale: 0.95 }}
             >
               <Link href="/" className="flex items-center">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mr-3">
-                  <Globe className="w-5 h-5 text-white" />
+                <div className="relative w-10 h-10 mr-3">
+                  <Image src="/globalrise-logo.svg" alt="GlobalRise logo" fill sizes="40px" className="object-contain" priority />
                 </div>
                 <div>
                   <h1 className="text-xl font-bold text-white">GlobalRise</h1>
@@ -79,11 +82,11 @@ export default function Header() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <Link
-                href="/contact"
+                href="/contact#contact-form"
                 className="px-6 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 flex items-center gap-2"
               >
                 <BookOpen className="w-4 h-4" />
-                Free Consultation
+                Start Free Support
               </Link>
             </motion.div>
 
@@ -160,12 +163,12 @@ export default function Header() {
                 className="pt-4 border-t border-white/10"
               >
                 <Link
-                  href="/contact"
+                  href="/contact#contact-form"
                   className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <BookOpen className="w-5 h-5" />
-                  Free Consultation
+                  Start Free Support
                 </Link>
               </motion.div>
             </nav>
@@ -175,3 +178,6 @@ export default function Header() {
     </>
   );
 }
+
+
+
